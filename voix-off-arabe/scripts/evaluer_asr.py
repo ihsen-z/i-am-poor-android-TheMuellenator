@@ -23,10 +23,11 @@ import sherpa_onnx
 
 ICI = Path(__file__).resolve().parent
 REF = ICI.parent / "texte" / "texte_sans_tashkeel.txt"
-# Omnilingual ASR ne retranscrit pas les nombres écrits en toutes lettres, alors que
-# tous les moteurs les prononcent (vérifié : la phrase 1 dure 3 à 4 s de plus avec le
-# nombre). On l'exclut de la référence pour ne pas pénaliser toutes les voix à tort.
-IGNORER = "ألف وثمانمئة وسبعة وأربعين"
+# Omnilingual ASR écrit les nombres en chiffres (« ثلاثة » devient « 3 »), et les chiffres
+# sont retirés à la normalisation. Les moteurs, eux, prononcent bien ces mots (vérifié :
+# la phrase 1 dure 3 à 4 s de plus avec le nombre). On exclut donc ces mots de la
+# référence pour ne pas pénaliser toutes les voix à tort.
+IGNORER = ["ألف وثمانمئة وسبعة وأربعين", "ثلاثة"]
 
 
 def normaliser(t: str) -> str:
@@ -47,6 +48,37 @@ def distance(a, b) -> int:
     return prev[-1]
 
 
+def blocs_sur_silences(samples: np.ndarray, sr: int = 16000, max_s: float = 18.0,
+                       pause_min_s: float = 0.3):
+    """Découpe l'audio en blocs de 18 s au plus, en ne coupant que dans les vraies pauses.
+
+    Une coupe à durée fixe, ou dans une micro-pause entre deux mots, peut tomber au
+    milieu d'une phrase : le modèle perd alors quelques mots à la jonction, ce qui
+    fausse le score. On ne coupe donc que dans les silences d'au moins 0,3 s.
+    """
+    import librosa
+    brutes = librosa.effects.split(samples, top_db=35, frame_length=1024, hop_length=256)
+    zones = []
+    for a, b in brutes:
+        if zones and (a - zones[-1][1]) / sr < pause_min_s:
+            zones[-1][1] = b
+        else:
+            zones.append([a, b])
+    blocs, debut, fin = [], None, None
+    for a, b in zones:
+        if debut is None:
+            debut, fin = a, b
+        elif (b - debut) / sr > max_s:
+            blocs.append((debut, fin))
+            debut, fin = a, b
+        else:
+            fin = b
+    if debut is not None:
+        blocs.append((debut, fin))
+    marge = int(0.1 * sr)
+    return [samples[max(0, a - marge):b + marge] for a, b in blocs]
+
+
 def charger_audio(path: Path) -> np.ndarray:
     raw = subprocess.run(["ffmpeg", "-loglevel", "error", "-i", str(path), "-ar", "16000",
                           "-ac", "1", "-f", "f32le", "-"], capture_output=True, check=True).stdout
@@ -59,8 +91,14 @@ def scores(ref: str, hyp: str):
     return cer, wer
 
 
+def sans_nombres(texte: str) -> str:
+    for mot in IGNORER:
+        texte = texte.replace(mot, " ")
+    return texte
+
+
 def reference() -> str:
-    return normaliser(REF.read_text(encoding="utf-8").replace(IGNORER, ""))
+    return normaliser(sans_nombres(REF.read_text(encoding="utf-8")))
 
 
 def main():
@@ -87,12 +125,10 @@ def main():
 
     for mp3 in sorted(args.audio.glob("*.mp3")):
         samples = charger_audio(mp3)
-        # transcription par blocs de ~20 s pour rester dans la fenêtre du modèle
         textes = []
-        bloc = 16000 * 20
-        for i in range(0, len(samples), bloc):
+        for bloc in blocs_sur_silences(samples):
             s = rec.create_stream()
-            s.accept_waveform(16000, samples[i:i + bloc])
+            s.accept_waveform(16000, bloc)
             rec.decode_stream(s)
             textes.append(s.result.text)
         hyp = normaliser(" ".join(textes))

@@ -90,6 +90,13 @@ audio { width: 100%; height: 40px; }
 .rate button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--panel); }
 button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
+.improve { display: grid; gap: 12px; padding-top: 8px; border-top: 1px solid var(--line); }
+.levers { margin: 0; padding-left: 20px; display: grid; gap: 6px; max-width: 70ch; }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.pair > div { display: grid; gap: 4px; min-width: 0; }
+.pair-label { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.pair-label.after { color: var(--accent); }
+@media (max-width: 620px) { .pair { grid-template-columns: 1fr; } }
 .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 20px; display: grid; gap: 12px; }
 .panel ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
 .copy-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
@@ -108,9 +115,9 @@ textarea { width: 100%; min-height: 120px; font: 13px var(--f-mono); background:
 
 <div class="wrap">
   <header>
-    <div class="eyebrow"><span class="rec-dot" aria-hidden="true"></span>Casting · voix off arabe · 1ʳᵉ série</div>
+    <div class="eyebrow"><span class="rec-dot" aria-hidden="true"></span>Casting · voix off arabe · séries 1 et 2</div>
     <h1>Quelle voix pour tes narrations ?</h1>
-    <p class="lede">Huit prises du même texte en arabe classique, lues par cinq modèles gratuits et open source, tous exécutés hors ligne sur CPU. Écoute-les, note-les de 1 à 5, puis copie tes notes et renvoie-les-moi.</p>
+    <p class="lede">Série 1 : huit prises du même texte en arabe classique, lues par cinq modèles gratuits et open source, tous exécutés hors ligne sur CPU. Série 2 : les voix M4 et M1 de Supertonic 3 retravaillées, plus une voix hybride. Écoute, note de 1 à 5, puis copie tes notes et renvoie-les-moi.</p>
   </header>
 
   <section class="script" aria-labelledby="script-h">
@@ -132,6 +139,19 @@ textarea { width: 100%; min-height: 120px; font: 13px var(--f-mono); background:
   <p class="legend">CER = taux d'erreur par caractère quand un modèle de reconnaissance vocale (Meta Omnilingual ASR) retranscrit l'audio. Plus il est bas, plus la prononciation est claire. « Mélodie » mesure l'écart de hauteur de la voix : vers 2 demi-tons, la lecture est plate ; au-delà de 3, elle est plus vivante. Aucun de ces chiffres ne mesure le naturel : seule ton oreille peut le juger.</p>
   <div class="takes" id="takes"></div>
 
+  <section class="improve" aria-labelledby="imp-h">
+    <div class="eyebrow"><span class="rec-dot" aria-hidden="true"></span>Série 2 · Supertonic 3 retravaillé</div>
+    <h2 id="imp-h">Avant / après : M4, M1 et la voix hybride</h2>
+    <p class="note">Même modèle, aucun réentraînement. Quatre leviers ont été appliqués :</p>
+    <ul class="levers">
+      <li><b>Tashkeel ciblé</b> : seuls les mots difficiles sont vocalisés. Résultat : même partiel, le tashkeel gêne Supertonic (4,1 % d'erreurs contre 1,3 % sans). Il n'a été retenu que pour 2 segments sur 18 : écris sans tashkeel.</li>
+      <li><b>Meilleure prise</b> : 8 tirages par segment, puis sélection automatique de la mieux prononcée et, à égalité, de la plus expressive. C'est le levier décisif : 2,7 % d'erreurs en moyenne pour un tirage au hasard, 0 % sur 17 segments sur 18 après sélection.</li>
+      <li><b>Voix hybride</b> : moyenne des styles de M1 (intonation vivante) et de M4 (clarté).</li>
+      <li><b>Montage de narrateur</b> : pauses dosées selon le sens, citation finale séparée et plus lente, mastering voix off à −16 LUFS.</li>
+    </ul>
+    <div class="takes" id="improved"></div>
+  </section>
+
   <section class="panel" aria-labelledby="notes-h">
     <h2 id="notes-h">Tes notes</h2>
     <p class="note">Tes notes restent dans ce navigateur. Copie le résumé et colle-le dans la conversation.</p>
@@ -144,7 +164,7 @@ textarea { width: 100%; min-height: 120px; font: 13px var(--f-mono); background:
 
   <section class="panel" aria-labelledby="next-h">
     <h2 id="next-h">Pas encore testés (réseau bloqué ici)</h2>
-    <p class="note">L'environnement cloud de cette session bloque HuggingFace, Microsoft Edge TTS et ElevenLabs. Ces candidats, souvent plus naturels, feront la 2ᵉ série dès que l'accès sera ouvert :</p>
+    <p class="note">L'environnement cloud de cette session bloque HuggingFace, Microsoft Edge TTS et ElevenLabs. Ces candidats, souvent plus naturels, pourront être testés dès que l'accès sera ouvert :</p>
     <ul id="next"></ul>
   </section>
 </div>
@@ -175,7 +195,7 @@ const TAKES = [
   "voice": "voix M4 · texte brut",
   "gender": "voix masculine",
   "license": "OpenRAIL-M",
-  "cer": 2.8,
+  "cer": 1.5,
   "dur": 59.1,
   "wpm": 90,
   "var": 2.9,
@@ -188,7 +208,7 @@ const TAKES = [
   "voice": "voix M1 · texte brut",
   "gender": "voix masculine",
   "license": "OpenRAIL-M",
-  "cer": 3.5,
+  "cer": 4.6,
   "dur": 62.8,
   "wpm": 85,
   "var": 4.2,
@@ -201,11 +221,11 @@ const TAKES = [
   "voice": "voix F2 · texte brut",
   "gender": "voix féminine",
   "license": "OpenRAIL-M",
-  "cer": 4.0,
+  "cer": 2.5,
   "dur": 59.2,
   "wpm": 90,
   "var": 3.1,
-  "note": "Meilleure voix féminine sur la prononciation."
+  "note": "Voix féminine au registre moyen (192 Hz)."
  },
  {
   "id": "04_piper_kareem",
@@ -214,7 +234,7 @@ const TAKES = [
   "voice": "kareem · texte vocalisé",
   "gender": "voix masculine",
   "license": "licence à vérifier",
-  "cer": 4.3,
+  "cer": 4.1,
   "dur": 68.9,
   "wpm": 78,
   "var": 1.9,
@@ -227,7 +247,7 @@ const TAKES = [
   "voice": "voix F1 · texte brut",
   "gender": "voix féminine",
   "license": "OpenRAIL-M",
-  "cer": 4.3,
+  "cer": 2.3,
   "dur": 62.8,
   "wpm": 85,
   "var": 3.7,
@@ -240,7 +260,7 @@ const TAKES = [
   "voice": "SA_dii · texte vocalisé",
   "gender": "voix féminine",
   "license": "CC BY-NC-SA · non commercial",
-  "cer": 7.3,
+  "cer": 6.9,
   "dur": 53.7,
   "wpm": 99,
   "var": 2.1,
@@ -253,7 +273,7 @@ const TAKES = [
   "voice": "SA_miro V2 · texte vocalisé",
   "gender": "voix masculine",
   "license": "CC BY-NC-SA · non commercial",
-  "cer": 9.0,
+  "cer": 7.9,
   "dur": 51.0,
   "wpm": 105,
   "var": 2.0,
@@ -266,11 +286,65 @@ const TAKES = [
   "voice": "af_msa · texte vocalisé",
   "gender": "voix féminine",
   "license": "Apache-2.0",
-  "cer": 13.5,
+  "cer": 9.1,
   "dur": 49.1,
   "wpm": 109,
   "var": 2.6,
   "note": "Le seul modèle affiné spécialement sur l'arabe standard. Plus d'erreurs mesurées : il attend en amont un vocaliseur automatique que sherpa-onnx n'inclut pas."
+ }
+];
+const IMPROVED = [
+ {
+  "id": "M4_ameliore",
+  "code": "M4",
+  "title": "Supertonic 3 · M4",
+  "subtitle": "voix masculine, la plus claire",
+  "before": {
+   "file": "audio/01_supertonic3_M4.mp3",
+   "cer": 1.5,
+   "var": 2.9,
+   "dur": 59.1
+  },
+  "after": {
+   "file": "audio/ameliore/M4_ameliore.mp3",
+   "cer": 0.8,
+   "var": 3.1,
+   "dur": 57.1
+  },
+  "note": "Tashkeel ciblé retenu pour 2 segments sur 6. Erreurs par segment après sélection : 0 %, 0 %, 0 %, 0 %, 0 %, 0 %."
+ },
+ {
+  "id": "M1_ameliore",
+  "code": "M1",
+  "title": "Supertonic 3 · M1",
+  "subtitle": "voix masculine, la plus expressive",
+  "before": {
+   "file": "audio/02_supertonic3_M1.mp3",
+   "cer": 4.6,
+   "var": 4.2,
+   "dur": 62.8
+  },
+  "after": {
+   "file": "audio/ameliore/M1_ameliore.mp3",
+   "cer": 1.0,
+   "var": 4.2,
+   "dur": 59.5
+  },
+  "note": "Texte brut retenu pour les 6 segments. Erreurs par segment après sélection : 0 %, 1 %, 0 %, 0 %, 0 %, 0 %."
+ },
+ {
+  "id": "hybride_M1xM4_ameliore",
+  "code": "H",
+  "title": "Hybride M1×M4",
+  "subtitle": "moyenne des styles de M1 et M4",
+  "before": null,
+  "after": {
+   "file": "audio/ameliore/hybride_M1xM4_ameliore.mp3",
+   "cer": 0.8,
+   "var": 3.8,
+   "dur": 57.6
+  },
+  "note": "Texte brut retenu pour les 6 segments. Erreurs par segment après sélection : 0 %, 0 %, 0 %, 0 %, 0 %, 0 %."
  }
 ];
 const NEXT = [
@@ -337,14 +411,42 @@ TAKES.forEach((t, i) => {
     </div>`;
   takesEl.appendChild(el);
 });
-takesEl.addEventListener('click', e => {
+const impEl = document.getElementById('improved');
+IMPROVED.forEach((t, i) => {
+  const el = document.createElement('article');
+  el.className = 'take';
+  const chips = (x, cls) => `
+        <span class="chip ${cerClass(x.cer)}">CER <b>${x.cer.toFixed(1)} %</b></span>
+        <span class="chip ${x.var >= 3 ? 'good' : ''}">mélodie <b>±${x.var.toFixed(1)}</b></span>
+        <span class="chip">durée <b>${x.dur.toFixed(0)} s</b></span>`;
+  el.innerHTML = `
+    <div class="take-no"><small>VOIX</small>${t.code}</div>
+    <div class="take-main">
+      <div class="take-title"><strong>${t.title}</strong><span>${t.subtitle}</span></div>
+      <div class="pair">
+        <div><span class="pair-label">Avant${t.before ? '' : ' (n’existait pas)'}</span>
+          ${t.before ? `<audio controls preload="none" src="${t.before.file}"></audio><div class="chips">${chips(t.before)}</div>` : '<p class="note">Voix créée pendant cette série.</p>'}</div>
+        <div><span class="pair-label after">Après</span>
+          <audio controls preload="none" src="${t.after.file}"></audio><div class="chips">${chips(t.after)}</div></div>
+      </div>
+      <p class="note">${t.note}</p>
+      <div class="rate" role="group" aria-label="Note de la version améliorée ${t.code}">
+        <span>Ta note (après)</span>
+        ${[1,2,3,4,5].map(s => `<button type="button" data-id="${t.id}" data-s="${s}" aria-pressed="${ratings[t.id] === s}">${s}</button>`).join('')}
+      </div>
+    </div>`;
+  impEl.appendChild(el);
+});
+function noter(e) {
   const b = e.target.closest('.rate button'); if (!b) return;
   const id = b.dataset.id, s = +b.dataset.s;
   ratings[id] = ratings[id] === s ? undefined : s;
   store.set('ratings', ratings);
   b.parentElement.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', ratings[id] === +x.dataset.s));
   renderSummary();
-});
+}
+takesEl.addEventListener('click', noter);
+impEl.addEventListener('click', noter);
 // une seule lecture à la fois
 document.addEventListener('play', e => {
   document.querySelectorAll('audio').forEach(a => { if (a !== e.target) a.pause(); });
@@ -358,8 +460,11 @@ blind.onchange = applyBlind; applyBlind();
 
 // Résumé
 function renderSummary() {
-  const rows = TAKES.map((t, i) => `Prise ${String(i + 1).padStart(2, '0')} (${t.id}) : ${ratings[t.id] ? ratings[t.id] + '/5' : 'pas notée'}`);
-  document.getElementById('summary').value = 'Mes notes — casting voix off arabe, série 1\n' + rows.join('\n') + '\nCommentaire : ';
+  const note = id => ratings[id] ? ratings[id] + '/5' : 'pas notée';
+  const rows = TAKES.map((t, i) => `Prise ${String(i + 1).padStart(2, '0')} (${t.id}) : ${note(t.id)}`);
+  const rows2 = IMPROVED.map(t => `${t.title} amélioré (${t.id}) : ${note(t.id)}`);
+  document.getElementById('summary').value = 'Mes notes — casting voix off arabe\nSérie 1\n' + rows.join('\n') +
+    (rows2.length ? '\nSérie 2 (après amélioration)\n' + rows2.join('\n') : '') + '\nCommentaire : ';
 }
 renderSummary();
 document.getElementById('copy').onclick = () => {

@@ -1,0 +1,1034 @@
+{
+ "M4": [
+  {
+   "segment": "s1",
+   "variante": "cible",
+   "tirage": 1,
+   "cer": 0.0,
+   "melodie": 3.22,
+   "tirages": [
+    {
+     "variante": "brut",
+     "tirage": 0,
+     "cer": 0.0,
+     "melodie": 3.18
+    },
+    {
+     "variante": "brut",
+     "tirage": 1,
+     "cer": 0.0,
+     "melodie": 2.94
+    },
+    {
+     "variante": "brut",
+     "tirage": 2,
+     "cer": 2.9,
+     "melodie": 2.85
+    },
+    {
+     "variante": "brut",
+     "tirage": 3,
+     "cer": 1.4,
+     "melodie": 2.96
+    },
+    {
+     "variante": "cible",
+     "tirage": 0,
+     "cer": 0.0,
+     "melodie": 2.83
+    },
+    {
+     "variante": "cible",
+     "tirage": 1,
+     "cer": 0.0,
+     "melodie": 3.22
+    },
+    {
+     "variante": "cible",
+     "tirage": 2,
+     "cer": 0.0,
+     "melodie": 3.22
+    },
+    {
+     "variante": "cible",
+     "tirage": 3,
+     "cer": 1.4,
+     "melodie": 2.99
+    }
+   ]
+  },
+  {
+   "segment": "s2",
+   "variante": "brut",
+   "tirage": 3,
+   "cer": 0.0,
+   "melodie": 2.91,
+   "tirages": [
+    {
+     "variante": "brut",
+     "tirage": 0,
+     "cer": 2.0,
+     "melodie": 2.94
+    },
+    {
+     "variante": "brut",
+     "tirage": 1,
+     "cer": 1.0,
+     "melodie": 2.9
+    },
+    {
+     "variante": "brut",
+     "tirage": 2,
+     "cer": 2.0,
+     "melodie": 2.78
+    },
+    {
+     "variante": "brut",
+     "tirage": 3,
+     "cer": 0.0,
+     "melodie": 2.91
+    },
+    {
+     "variante": "cible",
+     "tirage": 0,
+     "cer": 2.9,
+     "melodie": 3.16
+    },
+    {
+     "variante": "cible",
+     "tirage": 1,
+     "cer": 4.9,
+     "melodie": 2.64
+    },
+    {
+     "variante": "cible",
+     "tirage": 2,
+     "cer": 2.9,
+     "melodie": 3.03
+    },
+    {
+     "variante": "cible",
+     "tirage": 3,
+     "cer": 2.9,
+     "melodie": 2.54
+    }
+   ]
+  },
+  {
+   "segment": "s3",
+   "variante": "brut",
+   "tirage": 0,
+   "cer": 0.0,
+   "melodie": 3.0,
+   "tirages": [
+    {
+     "variante": "brut",
+     "tirage": 0,
+     "cer": 0.0,
+     "melodie": 3.0
+    },
+    {
+     "variante": "brut",
+     "tirage": 1,
+     "cer": 5.2,
+     "melodie": 3.22
+    },
+    {
+     "variante": "brut",
+     "tirage": 2,
+     "cer": 0.0,
+     "melodie": 2.97
+    },
+    {
+     "variante": "brut",
+     "tirage": 3,
+     "cer": 1.7,
+     "melodie": 2.89
+    },
+    {
+     "variante": "cible",
+     "tirage": 0,
+     "cer": 5.2,
+     "melodie": 2.59
+    },
+    {
+     "variante": "cible",
+     "tirage": 1,
+     "cer": 5.2,
+     "melodie": 3.37
+    },
+    {
+     "variante": "cible",
+     "tirage": 2,
+     "cer": 5.2,
+     "melodie": 3.14
+    },
+    {
+     "variante": "cible",
+     "tirage": 3,
+     "cer": 3.4,
+     "melodie": 3.24
+    }
+   ]
+  },
+  {
+   "segment": "s4",
+   "variante": "brut",
+   "tirage": 0,
+   "cer": 0.0,
+   "melodie": 2.95,
+   "tirages": [
+    {
+     "variante": "brut",
+     "tirage": 0,
+     "cer": 0.0,
+     "melodie": 2.95
+    },
+    {
+     "variante": "brut",
+     "tirage": 1,
+     "cer": 1.2,
+     "melodie": 2.62
+    },
+    {
+     "variante": "brut",
+     "tirage": 2,
+     "cer": 2.4,
+     "melodie": 3.14
+    },
+    {
+     "variante": "brut",
+     "tirage": 3,
+     "cer": 3.5,
+     "melodie": 2.98
+    },
+    {
+     "variante": "cible",
+     "tirage": 0,
+     "cer": 1.2,
+     "melodie": 2.64
+    },
+    {
+     "variante": "cible",
+     "tirage": 1,
+     "cer": 3.5,
+     "melodie": 3.07
+    },
+    {
+     "variante": "cible",
+     "tirage": 2,
+     "cer": 3.5,
+     "melodie": 3.06
+    },
+    {
+     "variante": "cible",
+     "tirage": 3,
+     "cer": 0.0,
+     "melodie": 2.91
+    }
+   ]
+  },
+  {
+   "segment": "s5a",
+   "variante": "cible",
+   "tirage": 2,
+   "cer": 0.0,
+   "melodie": 3.36,
+   "tirages": [
+    {
+     "variante": "brut",
+     "tirage": 0,
+     "cer": 3.3,
+     "melodie": 3.32
+    },
+    {
+     "variante": "brut",
+     "tirage": 1,
+     "cer": 3.3,
+     "melodie": 3.67
+    },
+    {
+     "variante": "brut",
+     "tirage": 2,
+     "cer": 3.3,
+     "melodie": 4.05
+    },
+    {
+     "variante": "brut",
+     "tirage": 3,
+     "cer": 0.0,
+     "melodie": 3.08
+    },
+    {
+     "variante": "cible",
+     "tirage": 0,
+     "cer": 3.3,
+     "melodie": 3.55
+    },
+    {
+     "variante": "cible",
+     "tirage": 1,
+     "cer": 6.7,
+     "melodie": 3.95
+    },
+    {
+     "variante": "cible",
+     "tirage": 2,
+     "cer": 0.0,
+     "melodie": 3.36
+    },
+    {
+     "variante": "cible",
+     "tirage": 3,
+     "cer": 3.3,
+     "melodie": 3.48
+    }
+   ]
+  },
+  {
+   "segment": "s5b",
+   "variante": "brut",
+   "tirage": 3,
+   "cer": 0.0,
+   "melodie": 3.64,
+   "tirages": [
+    {
+     "variante": "brut",
+     "tirage": 0,
+     "cer": 0.0,
+     "melodie": 3.24
+    },
+    {
+     "variante": "brut",
+     "tirage": 1,
+     "cer": 0.0,
+     "melodie": 3.24
+    },
+    {
+     "variante": "brut",
+     "tirage": 2,
+     "cer": 0.0,
+     "melodie": 3.33
+    },
+    {
+     "variante": "brut",
+     "tirage": 3,
+     "cer": 0.0,
+     "melodie": 3.64
+    },
+    {
+     "variante": "cible",
+     "tirage": 0,
+     "cer": 8.2,
+     "melodie": 3.6
+    },
+    {
+     "variante": "cible",
+     "tirage": 1,
+     "cer": 6.1,
+     "melodie": 3.64
+    },
+    {
+     "variante": "cible",
+     "tirage": 2,
+     "cer": 4.1,
+     "melodie": 3.18
+    },
+    {
+     "variante": "cible",
+     "tirage": 3,
+     "cer": 6.1,
+     "melodie": 3.39
+    }
+   ]
+  }
+ ],
+ "M1": [
+  {
+   "segment": "s1",
+   "variante": "brut",
+   "tirage": 0,
+   "cer": 0.0,
+   "melodie": 4.34,
+   "tirages": [
+    {
+     "variante": "brut",
+     "tirage": 0,
+     "cer": 0.0,
+     "melodie": 4.34
+    },
+    {
+     "variante": "brut",
+     "tirage": 1,
+     "cer": 0.0,
+     "melodie": 3.99
+    },
+    {
+     "variante": "brut",
+     "tirage": 2,
+     "cer": 1.4,
+     "melodie": 3.61
+    },
+    {
+     "variante": "brut",
+     "tirage": 3,
+     "cer": 0.0,
+     "melodie": 3.93
+    },
+    {
+     "variante": "cible",
+     "tirage": 0,
+     "cer": 1.4,
+     "melodie": 3.8
+    },
+    {
+     "variante": "cible",
+     "tirage": 1,
+     "cer": 2.9,
+     "melodie": 3.71
+    },
+    {
+     "variante": "cible",
+     "tirage": 2,
+     "cer": 2.9,
+     "melodie": 4.52
+    },
+    {
+     "variante": "cible",
+     "tirage": 3,
+     "cer": 1.4,
+     "melodie": 3.66
+    }
+   ]
+  },
+  {
+   "segment": "s2",
+   "variante": "brut",
+   "tirage": 2,
+   "cer": 1.0,
+   "melodie": 4.47,
+   "tirages": [
+    {
+     "variante": "brut",
+     "tirage": 0,
+     "cer": 2.0,
+     "melodie": 4.28
+    },
+    {
+     "variante": "brut",
+     "tirage": 1,
+     "cer": 2.9,
+     "melodie": 4.05
+    },
+    {
+     "variante": "brut",
+     "tirage": 2,
+     "cer": 1.0,
+     "melodie": 4.47
+    },
+    {
+     "variante": "brut",
+     "tirage": 3,
+     "cer": 1.0,
+     "melodie": 3.7
+    },
+    {
+     "variante": "cible",
+     "tirage": 0,
+     "cer": 3.9,
+     "melodie": 4.04
+    },
+    {
+     "variante": "cible",
+     "tirage": 1,
+     "cer": 4.9,
+     "melodie": 4.24
+    },
+    {
+     "variante": "cible",
+     "tirage": 2,
+     "cer": 4.9,
+     "melodie": 4.08
+    },
+    {
+     "variante": "cible",
+     "tirage": 3,
+     "cer": 4.9,
+     "melodie": 3.95
+    }
+   ]
+  },
+  {
+   "segment": "s3",
+   "variante": "brut",
+   "tirage": 3,
+   "cer": 0.0,
+   "melodie": 4.06,
+   "tirages": [
+    {
+     "variante": "brut",
+     "tirage": 0,
+     "cer": 5.2,
+     "melodie": 3.94
+    },
+    {
+     "variante": "brut",
+     "tirage": 1,
+     "cer": 1.7,
+     "melodie": 4.32
+    },
+    {
+     "variante": "brut",
+     "tirage": 2,
+     "cer": 5.2,
+     "melodie": 5.25
+    },
+    {
+     "variante": "brut",
+     "tirage": 3,
+     "cer": 0.0,
+     "melodie": 4.06
+    },
+    {
+     "variante": "cible",
+     "tirage": 0,
+     "cer": 5.2,
+     "melodie": 5.01
+    },
+    {
+     "variante": "cible",
+     "tirage": 1,
+     "cer": 1.7,
+     "melodie": 4.71
+    },
+    {
+     "variante": "cible",
+     "tirage": 2,
+     "cer": 8.6,
+     "melodie": 4.73
+    },
+    {
+     "variante": "cible",
+     "tirage": 3,
+     "cer": 5.2,
+     "melodie": 4.81
+    }
+   ]
+  },
+  {
+   "segment": "s4",
+   "variante": "brut",
+   "tirage": 0,
+   "cer": 0.0,
+   "melodie": 4.57,
+   "tirages": [
+    {
+     "variante": "brut",
+     "tirage": 0,
+     "cer": 0.0,
+     "melodie": 4.57
+    },
+    {
+     "variante": "brut",
+     "tirage": 1,
+     "cer": 2.4,
+     "melodie": 3.76
+    },
+    {
+     "variante": "brut",
+     "tirage": 2,
+     "cer": 3.5,
+     "melodie": 3.85
+    },
+    {
+     "variante": "brut",
+     "tirage": 3,
+     "cer": 1.2,
+     "melodie": 4.31
+    },
+    {
+     "variante": "cible",
+     "tirage": 0,
+     "cer": 3.5,
+     "melodie": 3.98
+    },
+    {
+     "variante": "cible",
+     "tirage": 1,
+     "cer": 7.1,
+     "melodie": 4.17
+    },
+    {
+     "variante": "cible",
+     "tirage": 2,
+     "cer": 4.7,
+     "melodie": 4.19
+    },
+    {
+     "variante": "cible",
+     "tirage": 3,
+     "cer": 4.7,
+     "melodie": 3.42
+    }
+   ]
+  },
+  {
+   "segment": "s5a",
+   "variante": "brut",
+   "tirage": 0,
+   "cer": 0.0,
+   "melodie": 4.52,
+   "tirages": [
+    {
+     "variante": "brut",
+     "tirage": 0,
+     "cer": 0.0,
+     "melodie": 4.52
+    },
+    {
+     "variante": "brut",
+     "tirage": 1,
+     "cer": 0.0,
+     "melodie": 3.38
+    },
+    {
+     "variante": "brut",
+     "tirage": 2,
+     "cer": 3.3,
+     "melodie": 4.46
+    },
+    {
+     "variante": "brut",
+     "tirage": 3,
+     "cer": 3.3,
+     "melodie": 4.45
+    },
+    {
+     "variante": "cible",
+     "tirage": 0,
+     "cer": 13.3,
+     "melodie": 4.6
+    },
+    {
+     "variante": "cible",
+     "tirage": 1,
+     "cer": 6.7,
+     "melodie": 4.38
+    },
+    {
+     "variante": "cible",
+     "tirage": 2,
+     "cer": 3.3,
+     "melodie": 5.01
+    },
+    {
+     "variante": "cible",
+     "tirage": 3,
+     "cer": 0.0,
+     "melodie": 4.48
+    }
+   ]
+  },
+  {
+   "segment": "s5b",
+   "variante": "brut",
+   "tirage": 2,
+   "cer": 0.0,
+   "melodie": 4.92,
+   "tirages": [
+    {
+     "variante": "brut",
+     "tirage": 0,
+     "cer": 0.0,
+     "melodie": 5.26
+    },
+    {
+     "variante": "brut",
+     "tirage": 1,
+     "cer": 0.0,
+     "melodie": 4.06
+    },
+    {
+     "variante": "brut",
+     "tirage": 2,
+     "cer": 0.0,
+     "melodie": 4.92
+    },
+    {
+     "variante": "brut",
+     "tirage": 3,
+     "cer": 0.0,
+     "melodie": 4.82
+    },
+    {
+     "variante": "cible",
+     "tirage": 0,
+     "cer": 2.0,
+     "melodie": 4.46
+    },
+    {
+     "variante": "cible",
+     "tirage": 1,
+     "cer": 6.1,
+     "melodie": 4.55
+    },
+    {
+     "variante": "cible",
+     "tirage": 2,
+     "cer": 6.1,
+     "melodie": 4.99
+    },
+    {
+     "variante": "cible",
+     "tirage": 3,
+     "cer": 6.1,
+     "melodie": 4.46
+    }
+   ]
+  }
+ ],
+ "hybride_M1xM4": [
+  {
+   "segment": "s1",
+   "variante": "brut",
+   "tirage": 3,
+   "cer": 0.0,
+   "melodie": 3.65,
+   "tirages": [
+    {
+     "variante": "brut",
+     "tirage": 0,
+     "cer": 1.4,
+     "melodie": 3.43
+    },
+    {
+     "variante": "brut",
+     "tirage": 1,
+     "cer": 0.0,
+     "melodie": 3.14
+    },
+    {
+     "variante": "brut",
+     "tirage": 2,
+     "cer": 0.0,
+     "melodie": 3.04
+    },
+    {
+     "variante": "brut",
+     "tirage": 3,
+     "cer": 0.0,
+     "melodie": 3.65
+    },
+    {
+     "variante": "cible",
+     "tirage": 0,
+     "cer": 2.9,
+     "melodie": 3.81
+    },
+    {
+     "variante": "cible",
+     "tirage": 1,
+     "cer": 1.4,
+     "melodie": 3.48
+    },
+    {
+     "variante": "cible",
+     "tirage": 2,
+     "cer": 1.4,
+     "melodie": 3.47
+    },
+    {
+     "variante": "cible",
+     "tirage": 3,
+     "cer": 2.9,
+     "melodie": 3.38
+    }
+   ]
+  },
+  {
+   "segment": "s2",
+   "variante": "brut",
+   "tirage": 1,
+   "cer": 0.0,
+   "melodie": 3.66,
+   "tirages": [
+    {
+     "variante": "brut",
+     "tirage": 0,
+     "cer": 1.0,
+     "melodie": 3.25
+    },
+    {
+     "variante": "brut",
+     "tirage": 1,
+     "cer": 0.0,
+     "melodie": 3.66
+    },
+    {
+     "variante": "brut",
+     "tirage": 2,
+     "cer": 1.0,
+     "melodie": 3.52
+    },
+    {
+     "variante": "brut",
+     "tirage": 3,
+     "cer": 2.0,
+     "melodie": 3.53
+    },
+    {
+     "variante": "cible",
+     "tirage": 0,
+     "cer": 4.9,
+     "melodie": 3.67
+    },
+    {
+     "variante": "cible",
+     "tirage": 1,
+     "cer": 6.9,
+     "melodie": 3.68
+    },
+    {
+     "variante": "cible",
+     "tirage": 2,
+     "cer": 3.9,
+     "melodie": 3.95
+    },
+    {
+     "variante": "cible",
+     "tirage": 3,
+     "cer": 3.9,
+     "melodie": 3.71
+    }
+   ]
+  },
+  {
+   "segment": "s3",
+   "variante": "brut",
+   "tirage": 3,
+   "cer": 0.0,
+   "melodie": 3.59,
+   "tirages": [
+    {
+     "variante": "brut",
+     "tirage": 0,
+     "cer": 0.0,
+     "melodie": 3.52
+    },
+    {
+     "variante": "brut",
+     "tirage": 1,
+     "cer": 1.7,
+     "melodie": 4.22
+    },
+    {
+     "variante": "brut",
+     "tirage": 2,
+     "cer": 5.2,
+     "melodie": 3.49
+    },
+    {
+     "variante": "brut",
+     "tirage": 3,
+     "cer": 0.0,
+     "melodie": 3.59
+    },
+    {
+     "variante": "cible",
+     "tirage": 0,
+     "cer": 5.2,
+     "melodie": 3.92
+    },
+    {
+     "variante": "cible",
+     "tirage": 1,
+     "cer": 5.2,
+     "melodie": 3.77
+    },
+    {
+     "variante": "cible",
+     "tirage": 2,
+     "cer": 8.6,
+     "melodie": 3.3
+    },
+    {
+     "variante": "cible",
+     "tirage": 3,
+     "cer": 3.4,
+     "melodie": 3.66
+    }
+   ]
+  },
+  {
+   "segment": "s4",
+   "variante": "brut",
+   "tirage": 3,
+   "cer": 0.0,
+   "melodie": 3.83,
+   "tirages": [
+    {
+     "variante": "brut",
+     "tirage": 0,
+     "cer": 1.2,
+     "melodie": 3.32
+    },
+    {
+     "variante": "brut",
+     "tirage": 1,
+     "cer": 3.5,
+     "melodie": 3.87
+    },
+    {
+     "variante": "brut",
+     "tirage": 2,
+     "cer": 0.0,
+     "melodie": 3.79
+    },
+    {
+     "variante": "brut",
+     "tirage": 3,
+     "cer": 0.0,
+     "melodie": 3.83
+    },
+    {
+     "variante": "cible",
+     "tirage": 0,
+     "cer": 0.0,
+     "melodie": 3.41
+    },
+    {
+     "variante": "cible",
+     "tirage": 1,
+     "cer": 1.2,
+     "melodie": 3.55
+    },
+    {
+     "variante": "cible",
+     "tirage": 2,
+     "cer": 3.5,
+     "melodie": 3.3
+    },
+    {
+     "variante": "cible",
+     "tirage": 3,
+     "cer": 3.5,
+     "melodie": 3.34
+    }
+   ]
+  },
+  {
+   "segment": "s5a",
+   "variante": "brut",
+   "tirage": 2,
+   "cer": 0.0,
+   "melodie": 3.72,
+   "tirages": [
+    {
+     "variante": "brut",
+     "tirage": 0,
+     "cer": 3.3,
+     "melodie": 4.45
+    },
+    {
+     "variante": "brut",
+     "tirage": 1,
+     "cer": 3.3,
+     "melodie": 3.5
+    },
+    {
+     "variante": "brut",
+     "tirage": 2,
+     "cer": 0.0,
+     "melodie": 3.72
+    },
+    {
+     "variante": "brut",
+     "tirage": 3,
+     "cer": 3.3,
+     "melodie": 3.67
+    },
+    {
+     "variante": "cible",
+     "tirage": 0,
+     "cer": 3.3,
+     "melodie": 3.96
+    },
+    {
+     "variante": "cible",
+     "tirage": 1,
+     "cer": 3.3,
+     "melodie": 4.07
+    },
+    {
+     "variante": "cible",
+     "tirage": 2,
+     "cer": 3.3,
+     "melodie": 4.25
+    },
+    {
+     "variante": "cible",
+     "tirage": 3,
+     "cer": 6.7,
+     "melodie": 3.54
+    }
+   ]
+  },
+  {
+   "segment": "s5b",
+   "variante": "brut",
+   "tirage": 1,
+   "cer": 0.0,
+   "melodie": 4.15,
+   "tirages": [
+    {
+     "variante": "brut",
+     "tirage": 0,
+     "cer": 0.0,
+     "melodie": 3.71
+    },
+    {
+     "variante": "brut",
+     "tirage": 1,
+     "cer": 0.0,
+     "melodie": 4.15
+    },
+    {
+     "variante": "brut",
+     "tirage": 2,
+     "cer": 0.0,
+     "melodie": 4.08
+    },
+    {
+     "variante": "brut",
+     "tirage": 3,
+     "cer": 0.0,
+     "melodie": 4.0
+    },
+    {
+     "variante": "cible",
+     "tirage": 0,
+     "cer": 6.1,
+     "melodie": 3.79
+    },
+    {
+     "variante": "cible",
+     "tirage": 1,
+     "cer": 6.1,
+     "melodie": 3.92
+    },
+    {
+     "variante": "cible",
+     "tirage": 2,
+     "cer": 2.0,
+     "melodie": 4.18
+    },
+    {
+     "variante": "cible",
+     "tirage": 3,
+     "cer": 12.2,
+     "melodie": 4.01
+    }
+   ]
+  }
+ ]
+}
