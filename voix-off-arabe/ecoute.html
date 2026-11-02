@@ -1,0 +1,376 @@
+<title>Casting voix off arabe</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout : feuille de casting de studio — le script en tête, puis une pile de « prises » numérotées dans l'ordre d'écoute. */
+:root {
+  --bg: #f3f4f1;
+  --panel: #ffffff;
+  --ink: #1d2422;
+  --muted: #5d6763;
+  --line: #d9ddd8;
+  --accent: #2f5d8a;
+  --accent-soft: #e3ebf3;
+  --rec: #c2412d;
+  --good: #2e7d4f;
+  --warn: #a8660b;
+  --bad: #b23a3a;
+  --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --f-arabic: "Amiri", "Noto Naskh Arabic", "Traditional Arabic", serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141917; --panel: #1c2320; --ink: #e6ebe8; --muted: #9aa5a0; --line: #2e3833;
+    --accent: #8db4e0; --accent-soft: #22303d; --rec: #ef7a63; --good: #6cc592; --warn: #e2a64c; --bad: #ec7f7f;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141917; --panel: #1c2320; --ink: #e6ebe8; --muted: #9aa5a0; --line: #2e3833;
+  --accent: #8db4e0; --accent-soft: #22303d; --rec: #ef7a63; --good: #6cc592; --warn: #e2a64c; --bad: #ec7f7f;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 28px 56px;
+}
+.wrap { max-width: 880px; margin: 0 auto; display: grid; gap: 28px; }
+h1, h2 { font-family: var(--f-display); text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+h1 { font-size: clamp(28px, 5vw, 40px); line-height: 1.1; }
+h2 { font-size: 20px; }
+p { margin: 0; }
+.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+.rec-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--rec); }
+header { display: grid; gap: 12px; }
+header .lede { color: var(--muted); max-width: 64ch; }
+
+.script { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 20px; display: grid; gap: 14px; }
+.script-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+.seg button { font: 500 13px var(--f-body); background: transparent; color: var(--muted); border: 0; padding: 6px 12px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent); }
+ol.lines { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; counter-reset: l; }
+ol.lines li { display: grid; grid-template-columns: 28px 1fr; gap: 10px; counter-increment: l; }
+ol.lines li::before { content: counter(l); font-family: var(--f-mono); font-size: 12px; color: var(--muted); padding-top: 8px; }
+.ar { font-family: var(--f-arabic); font-size: 22px; line-height: 1.9; direction: rtl; text-align: right; min-width: 0; }
+.fr { color: var(--muted); font-size: 14px; }
+.diff { font-size: 12.5px; color: var(--muted); font-family: var(--f-mono); }
+.line-body { display: grid; gap: 4px; min-width: 0; }
+
+.toolbar { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; justify-content: space-between; }
+.switch { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; cursor: pointer; }
+.switch input { width: 18px; height: 18px; accent-color: var(--accent); }
+
+.takes { display: grid; gap: 12px; }
+.take { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: grid; grid-template-columns: 56px 1fr; gap: 14px; }
+.take-no { font-family: var(--f-display); font-weight: 700; font-size: 30px; line-height: 1; color: var(--accent); padding-top: 2px; }
+.take-no small { display: block; font-family: var(--f-mono); font-weight: 400; font-size: 10.5px; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 4px; }
+.take-main { display: grid; gap: 10px; min-width: 0; }
+.take-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.take-title strong { font-family: var(--f-display); font-size: 18px; }
+.take-title span { color: var(--muted); font-size: 14px; }
+.blind .reveal { display: none; }
+.blind .blind-label { display: inline; }
+.blind-label { display: none; font-family: var(--f-display); font-size: 18px; font-weight: 700; }
+audio { width: 100%; height: 40px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font-family: var(--f-mono); font-size: 12px; border: 1px solid var(--line); border-radius: 6px; padding: 2px 8px; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.chip b { font-weight: 500; color: var(--ink); }
+.chip.good b { color: var(--good); } .chip.warn b { color: var(--warn); } .chip.bad b { color: var(--bad); }
+.note { font-size: 14px; color: var(--muted); }
+.rate { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.rate span { font-size: 13px; color: var(--muted); margin-right: 4px; }
+.rate button { font: 500 13px var(--f-mono); width: 32px; height: 32px; border-radius: 6px; border: 1px solid var(--line); background: transparent; color: var(--muted); cursor: pointer; }
+.rate button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--panel); }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 20px; display: grid; gap: 12px; }
+.panel ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+.copy-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.btn { font: 600 14px var(--f-body); background: var(--accent); color: var(--panel); border: 0; border-radius: 8px; padding: 10px 16px; cursor: pointer; }
+.status { font-size: 13px; color: var(--good); }
+textarea { width: 100%; min-height: 120px; font: 13px var(--f-mono); background: var(--bg); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 10px; }
+.legend { font-size: 13px; color: var(--muted); }
+@media (max-width: 520px) {
+  .take { grid-template-columns: 1fr; }
+  .take-no { font-size: 24px; display: flex; align-items: baseline; gap: 8px; }
+  .take-no small { margin: 0; }
+  .ar { font-size: 20px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow"><span class="rec-dot" aria-hidden="true"></span>Casting · voix off arabe · 1ʳᵉ série</div>
+    <h1>Quelle voix pour tes narrations ?</h1>
+    <p class="lede">Huit prises du même texte en arabe classique, lues par cinq modèles gratuits et open source, tous exécutés hors ligne sur CPU. Écoute-les, note-les de 1 à 5, puis copie tes notes et renvoie-les-moi.</p>
+  </header>
+
+  <section class="script" aria-labelledby="script-h">
+    <div class="script-head">
+      <h2 id="script-h">Le texte de test</h2>
+      <div class="seg" role="group" aria-label="Affichage du texte">
+        <button type="button" id="v-ar" aria-pressed="true">Arabe</button>
+        <button type="button" id="v-fr" aria-pressed="false">+ traduction</button>
+        <button type="button" id="v-diff" aria-pressed="false">+ difficultés</button>
+      </div>
+    </div>
+    <ol class="lines" id="lines"></ol>
+  </section>
+
+  <section class="toolbar" aria-label="Options d'écoute">
+    <h2>Les 8 prises</h2>
+    <label class="switch"><input type="checkbox" id="blind"> Écoute à l'aveugle (masque les modèles)</label>
+  </section>
+  <p class="legend">CER = taux d'erreur par caractère quand un modèle de reconnaissance vocale (Meta Omnilingual ASR) retranscrit l'audio. Plus il est bas, plus la prononciation est claire. « Mélodie » mesure l'écart de hauteur de la voix : vers 2 demi-tons, la lecture est plate ; au-delà de 3, elle est plus vivante. Aucun de ces chiffres ne mesure le naturel : seule ton oreille peut le juger.</p>
+  <div class="takes" id="takes"></div>
+
+  <section class="panel" aria-labelledby="notes-h">
+    <h2 id="notes-h">Tes notes</h2>
+    <p class="note">Tes notes restent dans ce navigateur. Copie le résumé et colle-le dans la conversation.</p>
+    <div class="copy-row">
+      <button type="button" class="btn" id="copy">Copier mes notes</button>
+      <span class="status" id="copy-status" role="status"></span>
+    </div>
+    <textarea id="summary" readonly aria-label="Résumé de tes notes"></textarea>
+  </section>
+
+  <section class="panel" aria-labelledby="next-h">
+    <h2 id="next-h">Pas encore testés (réseau bloqué ici)</h2>
+    <p class="note">L'environnement cloud de cette session bloque HuggingFace, Microsoft Edge TTS et ElevenLabs. Ces candidats, souvent plus naturels, feront la 2ᵉ série dès que l'accès sera ouvert :</p>
+    <ul id="next"></ul>
+  </section>
+</div>
+
+<script>
+const LINES = [
+  { ar: "فِي لَيْلَةٍ شِتْوِيَّةٍ قَارِسَةٍ مِنْ عَامِ أَلْفٍ وَثَمَانِمِئَةٍ وَسَبْعَةٍ وَأَرْبَعِينَ، اطْمَأَنَّ المُسْتَكْشِفُ العَجُوزُ إِلَى أَنَّ ضَوْضَاءَ العَاصِفَةِ قَدْ تَضَاءَلَتْ أَخِيرًا.",
+    fr: "Par une nuit d'hiver glaciale de l'an 1847, le vieil explorateur s'assura que le fracas de la tempête avait enfin faibli.",
+    diff: "Nombre en toutes lettres · hamzat al-wasl après une pause (اطْمَأَنَّ) · ض et hamza enchaînés (ضَوْضَاء، تَضَاءَلَتْ)" },
+  { ar: "تَقَدَّمَ بِخُطًى وَئِيدَةٍ نَحْوَ المَقْبَرَةِ المَنْسِيَّةِ، وَقَلْبُهُ يَخْفِقُ بَيْنَ رَجَاءٍ مُلِحٍّ وَخَوْفٍ مُسْتَتِرٍ، فِيمَا كَانَتِ الظِّلَالُ المُتَرَاقِصَةُ تَتَشَبَّثُ بِالجُدْرَانِ المُتَصَدِّعَةِ.",
+    fr: "Il avança à pas lents vers le cimetière oublié, le cœur battant entre un espoir pressant et une peur sourde, tandis que les ombres dansantes s'accrochaient aux murs lézardés.",
+    diff: "Tanwîn sur alif maqsûra (خُطًى) · hamza sur yâ' (وَئِيدَة) · shadda + tanwîn (مُلِحٍّ) · ظ emphatique · phrase longue à trois respirations" },
+  { ar: "أَيُّ سِرٍّ دَفِينٍ ظَلَّ مُسْتَعْصِيًا عَلَى اسْتِقْصَاءَاتِ المُؤَرِّخِينَ وَتَخْمِينَاتِهِمْ طَوَالَ ثَلَاثَةِ آلَافِ عَامٍ؟",
+    fr: "Quel secret enfoui avait résisté aux investigations et aux conjectures des historiens pendant trois mille ans ?",
+    diff: "Intonation interrogative · hamza sur wâw (المُؤَرِّخِين) · groupe consonantique + hamza (اسْتِقْصَاءَات) · madda (آلَاف)" },
+  { ar: "وَحِينَ أَزَاحَ الصَّخْرَةَ الضَّخْمَةَ بِشِقِّ الأَنْفُسِ، تَصَاعَدَ غُبَارٌ كَثِيفٌ، وَانْبَعَثَتْ رَائِحَةُ عَنْبَرٍ عَتِيقٍ امْتَزَجَتْ بِعَبَقِ البَخُّورِ المُتَحَلِّلِ.",
+    fr: "Et lorsqu'il eut déplacé à grand-peine l'énorme rocher, une épaisse poussière s'éleva, et une odeur d'ambre ancien se répandit, mêlée au parfum de l'encens décomposé.",
+    diff: "Emphatiques en série (الصَّخْرَة الضَّخْمَة) · assimilation n→m (عَنْبَر، انْبَعَثَتْ) · tanwîn suivi d'un hamzat al-wasl (عَتِيقٍ امْتَزَجَتْ) · ع et غ" },
+  { ar: "عِنْدَئِذٍ لَمْ يَتَمَالَكْ نَفْسَهُ، فَهَمَسَ بِصَوْتٍ مُرْتَجِفٍ: «يَا لَلْعَجَبِ! لَقَدْ صَدَقَتِ الأَسَاطِيرُ، وَهَا هِيَ ذِي الحَقِيقَةُ تَتَجَلَّى أَمَامَ عَيْنَيَّ».",
+    fr: "Alors, il ne put se contenir et murmura d'une voix tremblante : « Ô merveille ! Les légendes disaient vrai, et voici la vérité qui se dévoile sous mes yeux. »",
+    diff: "Discours direct et exclamation · lâm d'appel (يَا لَلْعَجَب) · rencontre de deux sukûn (صَدَقَتِ الأَسَاطِير) · shadda sur le yâ' final (عَيْنَيَّ)" }
+];
+const TAKES = [
+ {
+  "id": "01_supertonic3_M4",
+  "file": "audio/01_supertonic3_M4.mp3",
+  "model": "Supertonic 3",
+  "voice": "voix M4 · texte brut",
+  "gender": "voix masculine",
+  "license": "OpenRAIL-M",
+  "cer": 2.8,
+  "dur": 59.1,
+  "wpm": 90,
+  "var": 2.9,
+  "note": "Meilleure prononciation mesurée de la série. Lit le texte brut, sans tashkeel : tu peux coller ton texte tel quel."
+ },
+ {
+  "id": "02_supertonic3_M1",
+  "file": "audio/02_supertonic3_M1.mp3",
+  "model": "Supertonic 3",
+  "voice": "voix M1 · texte brut",
+  "gender": "voix masculine",
+  "license": "OpenRAIL-M",
+  "cer": 3.5,
+  "dur": 62.8,
+  "wpm": 85,
+  "var": 4.2,
+  "note": "La mélodie la plus variée de la série : c'est la lecture la plus « racontée »."
+ },
+ {
+  "id": "03_supertonic3_F2",
+  "file": "audio/03_supertonic3_F2.mp3",
+  "model": "Supertonic 3",
+  "voice": "voix F2 · texte brut",
+  "gender": "voix féminine",
+  "license": "OpenRAIL-M",
+  "cer": 4.0,
+  "dur": 59.2,
+  "wpm": 90,
+  "var": 3.1,
+  "note": "Meilleure voix féminine sur la prononciation."
+ },
+ {
+  "id": "04_piper_kareem",
+  "file": "audio/04_piper_kareem.mp3",
+  "model": "Piper (VITS)",
+  "voice": "kareem · texte vocalisé",
+  "gender": "voix masculine",
+  "license": "licence à vérifier",
+  "cer": 4.3,
+  "dur": 68.9,
+  "wpm": 78,
+  "var": 1.9,
+  "note": "Voix grave et posée, très bonne prononciation, mais une mélodie plus plate. Débit lent. Exige un texte avec tashkeel."
+ },
+ {
+  "id": "05_supertonic3_F1",
+  "file": "audio/05_supertonic3_F1.mp3",
+  "model": "Supertonic 3",
+  "voice": "voix F1 · texte brut",
+  "gender": "voix féminine",
+  "license": "OpenRAIL-M",
+  "cer": 4.3,
+  "dur": 62.8,
+  "wpm": 85,
+  "var": 3.7,
+  "note": "Voix féminine à l'intonation vivante."
+ },
+ {
+  "id": "06_piper_SA_dii",
+  "file": "audio/06_piper_SA_dii.mp3",
+  "model": "Piper (VITS)",
+  "voice": "SA_dii · texte vocalisé",
+  "gender": "voix féminine",
+  "license": "CC BY-NC-SA · non commercial",
+  "cer": 7.3,
+  "dur": 53.7,
+  "wpm": 99,
+  "var": 2.1,
+  "note": "Débit rapide. Entraînée sur des voix synthétiques. Exige un texte avec tashkeel."
+ },
+ {
+  "id": "07_piper_SA_miro_V2",
+  "file": "audio/07_piper_SA_miro_V2.mp3",
+  "model": "Piper (VITS)",
+  "voice": "SA_miro V2 · texte vocalisé",
+  "gender": "voix masculine",
+  "license": "CC BY-NC-SA · non commercial",
+  "cer": 9.0,
+  "dur": 51.0,
+  "wpm": 105,
+  "var": 2.0,
+  "note": "Voix très grave, débit rapide. Entraînée sur des voix synthétiques. Exige un texte avec tashkeel."
+ },
+ {
+  "id": "08_nabra82m",
+  "file": "audio/08_nabra82m.mp3",
+  "model": "Nabra-82M (Kokoro)",
+  "voice": "af_msa · texte vocalisé",
+  "gender": "voix féminine",
+  "license": "Apache-2.0",
+  "cer": 13.5,
+  "dur": 49.1,
+  "wpm": 109,
+  "var": 2.6,
+  "note": "Le seul modèle affiné spécialement sur l'arabe standard. Plus d'erreurs mesurées : il attend en amont un vocaliseur automatique que sherpa-onnx n'inclut pas."
+ }
+];
+const NEXT = [
+  "<b>Microsoft Edge Neural</b> (gratuit, sans clé) : Hamed et Zariyah (Arabie saoudite), Shakir et Salma (Égypte), plus d'autres pays. Souvent la référence gratuite pour la narration.",
+  "<b>Habibi-TTS</b> (2026, basé sur F5-TTS, arabe standard et dialectes) : open source, avec clonage à partir d'un extrait de voix. Licence non commerciale.",
+  "<b>Chatterbox Multilingual</b> (Resemble AI, licence MIT) : arabe pris en charge, voix expressive, clonage.",
+  "<b>XTTS-v2</b> (Coqui) : clonage de voix, arabe pris en charge. Licence non commerciale.",
+  "<b>Gemini TTS</b> (Google AI Studio, palier gratuit avec une clé API, quotas à vérifier) : très naturel, avec un style réglable par une consigne écrite.",
+  "<b>ElevenLabs</b> (offre gratuite limitée chaque mois, conditions à vérifier) : à écouter comme étalon haut de gamme."
+];
+
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+};
+
+// Texte
+const linesEl = document.getElementById('lines');
+LINES.forEach(l => {
+  const li = document.createElement('li');
+  li.innerHTML = `<div class="line-body"><p class="ar" lang="ar">${l.ar}</p><p class="fr" hidden>${l.fr}</p><p class="diff" hidden>${l.diff}</p></div>`;
+  linesEl.appendChild(li);
+});
+const view = { fr: false, diff: false };
+function applyView() {
+  document.querySelectorAll('.fr').forEach(e => e.hidden = !view.fr);
+  document.querySelectorAll('.diff').forEach(e => e.hidden = !view.diff);
+  document.getElementById('v-fr').setAttribute('aria-pressed', view.fr);
+  document.getElementById('v-diff').setAttribute('aria-pressed', view.diff);
+}
+document.getElementById('v-ar').onclick = () => { view.fr = false; view.diff = false; applyView(); };
+document.getElementById('v-fr').onclick = () => { view.fr = !view.fr; applyView(); };
+document.getElementById('v-diff').onclick = () => { view.diff = !view.diff; applyView(); };
+
+// Prises
+const ratings = store.get('ratings', {});
+const takesEl = document.getElementById('takes');
+const cerClass = c => c <= 10 ? 'good' : c <= 15 ? 'warn' : 'bad';
+TAKES.forEach((t, i) => {
+  const n = String(i + 1).padStart(2, '0');
+  const el = document.createElement('article');
+  el.className = 'take';
+  el.innerHTML = `
+    <div class="take-no"><small>PRISE</small>${n}</div>
+    <div class="take-main">
+      <div class="take-title">
+        <span class="blind-label">Voix ${String.fromCharCode(65 + i)}</span>
+        <strong class="reveal">${t.model}</strong><span class="reveal">${t.voice}</span>
+      </div>
+      <audio controls preload="none" src="${t.file}"></audio>
+      <div class="chips">
+        <span class="chip ${cerClass(t.cer)}">CER <b>${t.cer.toFixed(1)} %</b></span>
+        <span class="chip">durée <b>${t.dur.toFixed(0)} s</b></span>
+        <span class="chip ${t.var >= 3 ? 'good' : ''}">mélodie <b>±${t.var.toFixed(1)} demi-tons</b></span>
+        <span class="chip">débit <b>${t.wpm} mots/min</b></span>
+        <span class="chip reveal">${t.gender}</span>
+        <span class="chip reveal">${t.license}</span>
+      </div>
+      <p class="note reveal">${t.note}</p>
+      <div class="rate" role="group" aria-label="Note de la prise ${n}">
+        <span>Ta note</span>
+        ${[1,2,3,4,5].map(s => `<button type="button" data-id="${t.id}" data-s="${s}" aria-pressed="${ratings[t.id] === s}">${s}</button>`).join('')}
+      </div>
+    </div>`;
+  takesEl.appendChild(el);
+});
+takesEl.addEventListener('click', e => {
+  const b = e.target.closest('.rate button'); if (!b) return;
+  const id = b.dataset.id, s = +b.dataset.s;
+  ratings[id] = ratings[id] === s ? undefined : s;
+  store.set('ratings', ratings);
+  b.parentElement.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', ratings[id] === +x.dataset.s));
+  renderSummary();
+});
+// une seule lecture à la fois
+document.addEventListener('play', e => {
+  document.querySelectorAll('audio').forEach(a => { if (a !== e.target) a.pause(); });
+}, true);
+
+// Aveugle
+const blind = document.getElementById('blind');
+blind.checked = store.get('blind', false);
+function applyBlind() { document.body.classList.toggle('blind', blind.checked); store.set('blind', blind.checked); }
+blind.onchange = applyBlind; applyBlind();
+
+// Résumé
+function renderSummary() {
+  const rows = TAKES.map((t, i) => `Prise ${String(i + 1).padStart(2, '0')} (${t.id}) : ${ratings[t.id] ? ratings[t.id] + '/5' : 'pas notée'}`);
+  document.getElementById('summary').value = 'Mes notes — casting voix off arabe, série 1\n' + rows.join('\n') + '\nCommentaire : ';
+}
+renderSummary();
+document.getElementById('copy').onclick = () => {
+  const ta = document.getElementById('summary');
+  const ok = () => { document.getElementById('copy-status').textContent = 'Copié. Colle-le dans la conversation.'; };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(ta.value).then(ok, () => { ta.focus(); ta.select(); document.getElementById('copy-status').textContent = 'Texte sélectionné : copie-le avec Ctrl+C.'; });
+  } else { ta.focus(); ta.select(); }
+};
+
+// Prochaine série
+const nextEl = document.getElementById('next');
+NEXT.forEach(n => { const li = document.createElement('li'); li.innerHTML = n; nextEl.appendChild(li); });
+</script>
